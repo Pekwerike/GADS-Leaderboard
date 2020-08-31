@@ -1,4 +1,4 @@
-package com.prosperekwerike.gadsleaderboard.ui.Fragments
+package com.prosperekwerike.gadsleaderboard.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

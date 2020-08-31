@@ -21,7 +21,7 @@ class HomepageActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_homepage)
         initializeViews()
         homepageViewPager.adapter = HomepageViewPagerAdapter(2, supportFragmentManager)
-        homepageTabLayout.addTab()
+        
     }
 
     private fun initializeViews() {

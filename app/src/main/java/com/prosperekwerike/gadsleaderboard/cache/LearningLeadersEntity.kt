@@ -1,4 +1,4 @@
-package com.prosperekwerike.gadsleaderboard.localdatabase
+package com.prosperekwerike.gadsleaderboard.cache
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

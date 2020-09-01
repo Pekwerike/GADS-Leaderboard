@@ -12,9 +12,9 @@
         tools:context=".ui.fragments.SkillIQLeaders">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/skills_iq_leaders_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/skills_iq_leaders_recyclerview" />
+            android:layout_height="match_parent" />
 
     </FrameLayout>
 </layout>

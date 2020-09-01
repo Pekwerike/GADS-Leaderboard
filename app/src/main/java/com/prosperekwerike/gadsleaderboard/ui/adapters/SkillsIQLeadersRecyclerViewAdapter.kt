@@ -18,7 +18,7 @@ class SkillsIQLeadersRecyclerViewAdapter :
         : RecyclerView.ViewHolder(binding.root){
 
         fun bindData(data : SkillsIQLeadersCustomModel){
-            binding.skillsIQLeaderCustomModel = data 
+            binding.skillsIQLeaderCustomModel = data
         }
 
         companion object{
@@ -34,6 +34,14 @@ class SkillsIQLeadersRecyclerViewAdapter :
                 return LayoutItemViewHolder(binding)
             }
         }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LayoutItemViewHolder {
+        return LayoutItemViewHolder.createViewHolder(parent)
+    }
+
+    override fun onBindViewHolder(holder: LayoutItemViewHolder, position: Int) {
+        holder.bindData(getItem(position))
     }
 }
 

@@ -1,6 +1,6 @@
 package com.prosperekwerike.gadsleaderboard.network
 
-data class SkillsIQLeadersNetworkModel(
+data class SkillsIQLeadersNetworkDataTransferObject(
     val name : String,
     val score : Int,
     val country : String,

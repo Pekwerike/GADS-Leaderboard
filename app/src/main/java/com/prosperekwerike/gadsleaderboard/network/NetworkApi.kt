@@ -18,10 +18,10 @@ val retrofit : Retrofit = Retrofit.Builder()
 
 interface NetworkApiInterface {
     @GET("api/hours")
-    suspend fun getLearningLeader(): List<LearningLeadersNetworkModel>
+    suspend fun getLearningLeader(): List<LearningLeadersNetworkDataTranferObject>
 
     @GET("api/skilliq")
-    suspend fun getSkillsIQLeaders(): List<SkillsIQLeadersNetworkModel>
+    suspend fun getSkillsIQLeaders(): List<SkillsIQLeadersNetworkDataTransferObject>
 }
 
 object NetworkApi {

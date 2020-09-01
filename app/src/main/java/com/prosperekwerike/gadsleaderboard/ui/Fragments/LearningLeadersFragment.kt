@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.prosperekwerike.gadsleaderboard.R
 import com.prosperekwerike.gadsleaderboard.databinding.FragmentLearningLeadersBinding
+import com.prosperekwerike.gadsleaderboard.ui.HomepageActivity
 import com.prosperekwerike.gadsleaderboard.ui.adapters.LearningLeadersRecyclerViewAdapter
 
 class LearningLeadersFragment : Fragment() {
@@ -28,7 +30,11 @@ class LearningLeadersFragment : Fragment() {
         initializeViews()
         learningLeadersRecyclerViewAdapter = LearningLeadersRecyclerViewAdapter()
         learningLeadersRecyclerView.adapter = learningLeadersRecyclerViewAdapter
-        //TODO submit the list of learning leaders fetched from the api
+        HomepageActivity.learningLeadersList.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                learningLeadersRecyclerViewAdapter.submitList(it)
+            }
+        })
 
         learningLeadersRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
         LinearLayoutManager.VERTICAL, false)

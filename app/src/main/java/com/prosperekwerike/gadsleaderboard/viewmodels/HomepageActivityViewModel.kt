@@ -22,7 +22,7 @@ class HomepageActivityViewModel(application: Application)
         fetchListOfLearningLeaders()
     }
 
-    fun fetchListOfLearningLeaders() {
+   private fun fetchListOfLearningLeaders() {
         viewModelScope.launch {
             try {
                 _learningLeadersCollection.value =

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -19,7 +20,7 @@ import com.prosperekwerike.gadsleaderboard.ui.adapters.SkillsIQLeadersRecyclerVi
 class SkillIQLeaders : Fragment() {
     private lateinit var binding: FragmentSkillIQLeadersBinding
     private lateinit var skillsIQLeadersRecyclerView: RecyclerView
-    private lateinit var swipeToRefreshCollectionOfSkillsIQLeaders : SwipeRefreshLayout
+    private lateinit var swipeToRefreshCollectionOfSkillsIQLeaders: SwipeRefreshLayout
     private lateinit var skillsIQLeadersRecyclerViewAdapter: SkillsIQLeadersRecyclerViewAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,8 +38,14 @@ class SkillIQLeaders : Fragment() {
         skillsIQLeadersRecyclerView.adapter = skillsIQLeadersRecyclerViewAdapter
         HomepageActivity.skillsIQLeadersList.observe(viewLifecycleOwner, Observer {
             it?.let {
-                swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing = false
-                skillsIQLeadersRecyclerViewAdapter.submitList(it)
+                if (it.size == 0) {
+                    swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing = true
+                    HomepageActivity.refreshSkillsIQLeaders.value = true
+                } else {
+                    swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing = false
+                    skillsIQLeadersRecyclerViewAdapter.submitList(it)
+                    displayMessage("updated")
+                }
             }
         })
         skillsIQLeadersRecyclerView.layoutManager = LinearLayoutManager(
@@ -48,7 +55,7 @@ class SkillIQLeaders : Fragment() {
         )
 
         swipeToRefreshCollectionOfSkillsIQLeaders.setOnRefreshListener {
-            if(swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing){
+            if (swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing) {
                 HomepageActivity.refreshSkillsIQLeaders.value = true
             }
         }
@@ -57,9 +64,14 @@ class SkillIQLeaders : Fragment() {
         return binding.root
     }
 
+    private fun displayMessage(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
     private fun initializeViews() {
         skillsIQLeadersRecyclerView = binding.skillsIqLeadersRecyclerview
-        swipeToRefreshCollectionOfSkillsIQLeaders = binding.swipeToRefreshCollectionOfSkillsIqLeaders
+        swipeToRefreshCollectionOfSkillsIQLeaders =
+            binding.swipeToRefreshCollectionOfSkillsIqLeaders
     }
 
 

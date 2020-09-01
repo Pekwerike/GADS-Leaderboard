@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,7 +19,7 @@ import com.prosperekwerike.gadsleaderboard.ui.adapters.LearningLeadersRecyclerVi
 class LearningLeadersFragment : Fragment() {
     private lateinit var binding: FragmentLearningLeadersBinding
     private lateinit var learningLeadersRecyclerView: RecyclerView
-    private lateinit var swipeToRefreshLearningLeaders : SwipeRefreshLayout
+    private lateinit var swipeToRefreshLearningLeaders: SwipeRefreshLayout
     private lateinit var learningLeadersRecyclerViewAdapter: LearningLeadersRecyclerViewAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +37,14 @@ class LearningLeadersFragment : Fragment() {
         learningLeadersRecyclerView.adapter = learningLeadersRecyclerViewAdapter
         HomepageActivity.learningLeadersList.observe(viewLifecycleOwner, Observer {
             it?.let {
-                HomepageActivity.refreshLearningLeaders.value = false
-                learningLeadersRecyclerViewAdapter.submitList(it)
+                if (it.size == 0) {
+                    HomepageActivity.refreshLearningLeaders.value = true
+                    swipeToRefreshLearningLeaders.isRefreshing = true
+                } else {
+                    swipeToRefreshLearningLeaders.isRefreshing = false
+                    learningLeadersRecyclerViewAdapter.submitList(it)
+                    displayMessage("updated")
+                }
             }
         })
 
@@ -47,14 +54,16 @@ class LearningLeadersFragment : Fragment() {
         )
 
         swipeToRefreshLearningLeaders.setOnRefreshListener {
-            if(swipeToRefreshLearningLeaders.isRefreshing){
+            if (swipeToRefreshLearningLeaders.isRefreshing) {
                 HomepageActivity.refreshLearningLeaders.value = true
             }
         }
 
         return binding.root
     }
-
+    private fun displayMessage(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
     private fun initializeViews() {
         learningLeadersRecyclerView = binding.learningLeadersRecyclerview
         swipeToRefreshLearningLeaders = binding.swipeToRefreshCollectionOfLearningLeaders

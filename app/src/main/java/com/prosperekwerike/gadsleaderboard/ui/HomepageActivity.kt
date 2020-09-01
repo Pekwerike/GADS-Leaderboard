@@ -100,7 +100,6 @@ class HomepageActivity : AppCompatActivity() {
         homepageViewModel.learningLeaders.observe(this, Observer {
             it?.let {
                 learningLeadersList.value = it.toMutableList()
-                Toast.makeText(this, it.size.toString(), Toast.LENGTH_SHORT).show()
             }
         })
 

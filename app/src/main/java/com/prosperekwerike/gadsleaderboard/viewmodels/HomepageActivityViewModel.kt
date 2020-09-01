@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.prosperekwerike.gadsleaderboard.mappers.convertToLearningLeadersCustomModel
+import com.prosperekwerike.gadsleaderboard.mappers.convertToSkillsIQLeadersCustomModel
 import com.prosperekwerike.gadsleaderboard.models.LearningLeadersCustomModel
 import com.prosperekwerike.gadsleaderboard.models.SkillsIQLeadersCustomModel
 import com.prosperekwerike.gadsleaderboard.network.NetworkApi
@@ -32,8 +33,9 @@ class HomepageActivityViewModel(application: Application)
             withContext(Dispatchers.IO) {
                 fetchListOfLearningLeaders()
             }
-            withContext(Dispatchers.IO){}
-            fetchListOfSkillsIQLeaders()
+            withContext(Dispatchers.IO){
+                fetchListOfSkillsIQLeaders()
+            }
         }
     }
 
@@ -49,9 +51,11 @@ class HomepageActivityViewModel(application: Application)
         }
     }
 
-    private fun fetchListOfSkillsIQLeaders(){
+    private suspend fun fetchListOfSkillsIQLeaders(){
         try {
-
+           _skillsIQLeadersCollection.value =
+               NetworkApi.retrofitApiService.getSkillsIQLearning()
+                   .convertToSkillsIQLeadersCustomModel().toMutableList()
         }catch (exception : Exception){
 
         }

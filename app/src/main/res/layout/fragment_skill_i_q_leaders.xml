@@ -11,10 +11,17 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragments.SkillIQLeaders">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/skills_iq_leaders_recyclerview"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_to_refresh_collection_of_skills_iq_leaders"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/skills_iq_leaders_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </FrameLayout>
 </layout>

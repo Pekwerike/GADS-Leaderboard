@@ -57,7 +57,7 @@ class HomepageActivity : AppCompatActivity() {
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-               
+
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {

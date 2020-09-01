@@ -1,53 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="learningLeaderModel"
             type="com.prosperekwerike.gadsleaderboard.models.LearningLeadersCustomModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_margin="@dimen/standard_view_margin"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:padding="5dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_view_margin"
+        android:padding="@dimen/standard_view_padding"
+        app:cardCornerRadius="1dp"
+        app:cardElevation="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-        <ImageView
-            android:id="@+id/learning_leader_image_badge"
-            android:layout_width="100dp"
-            displayBadge="@{learningLeaderModel.learningBadgeUrl}"
-            android:layout_margin="@dimen/standard_view_margin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="70dp" />
+            <ImageView
+                android:id="@+id/learning_leader_image_badge"
+                displayBadge="@{learningLeaderModel.learningBadgeUrl}"
+                android:layout_width="100dp"
+                android:layout_height="70dp"
+                android:layout_margin="@dimen/standard_view_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/learning_leader_full_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@{learningLeaderModel.leaderName}"
-            app:layout_constraintBottom_toBottomOf="@+id/learning_leader_image_badge"
-            app:layout_constraintStart_toEndOf="@id/learning_leader_image_badge"
-            app:layout_constraintTop_toTopOf="@+id/learning_leader_image_badge" />
+            <TextView
+                android:id="@+id/learning_leader_full_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:padding="@dimen/standard_view_padding"
+                android:text="@{learningLeaderModel.leaderName}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/learning_leader_image_badge"
+                app:layout_constraintStart_toEndOf="@id/learning_leader_image_badge"
+                app:layout_constraintTop_toTopOf="@+id/learning_leader_image_badge" />
 
-        <TextView
-            android:id="@+id/learning_leader_learning_hours"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@{learningLeaderModel.hoursAndCountry}"
-            app:layout_constraintBottom_toBottomOf="@+id/learning_leader_image_badge"
-            app:layout_constraintStart_toEndOf="@id/learning_leader_image_badge"
-            app:layout_constraintTop_toBottomOf="@id/learning_leader_full_name"
-            app:layout_constraintVertical_bias="0.288" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/learning_leader_learning_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{learningLeaderModel.hoursAndCountry}"
+                android:textSize="14sp"
+                android:padding="@dimen/standard_view_padding"
+                app:layout_constraintBottom_toBottomOf="@+id/learning_leader_image_badge"
+                app:layout_constraintStart_toEndOf="@id/learning_leader_image_badge"
+                app:layout_constraintTop_toBottomOf="@id/learning_leader_full_name"
+                app:layout_constraintVertical_bias="0.288" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

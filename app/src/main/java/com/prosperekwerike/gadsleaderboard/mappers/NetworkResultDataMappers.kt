@@ -9,7 +9,7 @@ fun List<LearningLeadersModel>.convertToLearningLeadersCustomModel() :
         LearningLeadersCustomModel(
             leaderName = it.name,
             learningBadgeUrl = it.badgeUrl,
-            hoursAndCountry = "${it.hours} learning hours, ${it.country}"
+            hoursAndCountry = "${it.hours} learning hours, ${it.country}."
         )
     }
 }

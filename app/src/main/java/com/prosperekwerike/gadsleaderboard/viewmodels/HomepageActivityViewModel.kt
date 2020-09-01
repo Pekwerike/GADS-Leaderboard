@@ -24,4 +24,10 @@ class HomepageActivityViewModel(application: Application) : AndroidViewModel(app
         }
     }
 
+    fun refreshLearningLeaders(){
+        viewModelScope.launch {
+            mainRepository.refreshListOfLearningLeaders()
+        }
+    }
+
 }

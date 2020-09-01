@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.prosperekwerike.gadsleaderboard.R
 import com.prosperekwerike.gadsleaderboard.databinding.FragmentLearningLeadersBinding
 import com.prosperekwerike.gadsleaderboard.ui.HomepageActivity
@@ -17,6 +18,7 @@ import com.prosperekwerike.gadsleaderboard.ui.adapters.LearningLeadersRecyclerVi
 class LearningLeadersFragment : Fragment() {
     private lateinit var binding: FragmentLearningLeadersBinding
     private lateinit var learningLeadersRecyclerView: RecyclerView
+    private lateinit var swipeToRefreshLearningLeaders : SwipeRefreshLayout
     private lateinit var learningLeadersRecyclerViewAdapter: LearningLeadersRecyclerViewAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +36,7 @@ class LearningLeadersFragment : Fragment() {
         learningLeadersRecyclerView.adapter = learningLeadersRecyclerViewAdapter
         HomepageActivity.learningLeadersList.observe(viewLifecycleOwner, Observer {
             it?.let {
+                HomepageActivity.refreshLearningLeaders.value = false
                 learningLeadersRecyclerViewAdapter.submitList(it)
             }
         })
@@ -43,11 +46,18 @@ class LearningLeadersFragment : Fragment() {
             LinearLayoutManager.VERTICAL, false
         )
 
+        swipeToRefreshLearningLeaders.setOnRefreshListener {
+            if(swipeToRefreshLearningLeaders.isRefreshing){
+                HomepageActivity.refreshLearningLeaders.value = true
+            }
+        }
+
         return binding.root
     }
 
     private fun initializeViews() {
         learningLeadersRecyclerView = binding.learningLeadersRecyclerview
+        swipeToRefreshLearningLeaders = binding.swipeToRefreshCollectionOfLearningLeaders
     }
 
 }

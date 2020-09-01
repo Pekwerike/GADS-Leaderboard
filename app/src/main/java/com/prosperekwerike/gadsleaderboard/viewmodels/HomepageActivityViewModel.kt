@@ -7,8 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.prosperekwerike.gadsleaderboard.mappers.convertToLearningLeadersCustomModel
 import com.prosperekwerike.gadsleaderboard.models.LearningLeadersCustomModel
+import com.prosperekwerike.gadsleaderboard.models.SkillsIQLeadersCustomModel
 import com.prosperekwerike.gadsleaderboard.network.NetworkApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomepageActivityViewModel(application: Application)
     : AndroidViewModel(application) {
@@ -18,8 +21,19 @@ class HomepageActivityViewModel(application: Application)
     val learningLeadersCollection : LiveData<MutableList<LearningLeadersCustomModel>>
     get() = _learningLeadersCollection
 
+    private val _skillsIQLeadersCollection =
+        MutableLiveData<MutableList<SkillsIQLeadersCustomModel>>()
+    val skillsIQLeadersCollection : LiveData<MutableList<SkillsIQLeadersCustomModel>>
+    get() = _skillsIQLeadersCollection
+
     init {
-        fetchListOfLearningLeaders()
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                fetchListOfLearningLeaders()
+            }
+            withContext(Dispatchers.IO){}
+            fetchListOfSkillsIQLeaders()
+        }
     }
 
    private fun fetchListOfLearningLeaders() {
@@ -31,6 +45,12 @@ class HomepageActivityViewModel(application: Application)
             }catch (exception : Exception){
 
             }
+        }
+    }
+
+    private fun fetchListOfSkillsIQLeaders(){
+        try {
+
         }
     }
 }

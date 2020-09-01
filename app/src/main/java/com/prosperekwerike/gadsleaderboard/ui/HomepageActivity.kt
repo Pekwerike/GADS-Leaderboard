@@ -10,8 +10,8 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.prosperekwerike.gadsleaderboard.R
 import com.prosperekwerike.gadsleaderboard.databinding.ActivityHomepageBinding
-import com.prosperekwerike.gadsleaderboard.models.LearningLeadersCustomModel
-import com.prosperekwerike.gadsleaderboard.models.SkillsIQLeadersCustomModel
+import com.prosperekwerike.gadsleaderboard.domain.LearningLeadersCustomModel
+import com.prosperekwerike.gadsleaderboard.domain.SkillsIQLeadersCustomModel
 import com.prosperekwerike.gadsleaderboard.ui.adapters.HomepageViewPagerAdapter
 import com.prosperekwerike.gadsleaderboard.viewmodels.HomepageActivityViewModel
 
@@ -38,6 +38,33 @@ class HomepageActivity : AppCompatActivity() {
         homepageViewPager.adapter = HomepageViewPagerAdapter(2, supportFragmentManager)
         observeLiveDataFromViewModel()
 
+        homepageTabLayout.addTab(homepageTabLayout.newTab().setText("Learning Leaders"))
+        homepageTabLayout.addTab(homepageTabLayout.newTab().setText("Skill IQ Leader"))
+        attachTabLayoutWithViewpager()
+
+    }
+
+    private fun attachTabLayoutWithViewpager() {
+        homepageViewPager.addOnPageChangeListener(
+            TabLayout.TabLayoutOnPageChangeListener(
+                homepageTabLayout
+            )
+        )
+
+        homepageTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                homepageViewPager.currentItem = tab!!.position
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+               
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                homepageViewPager.currentItem = tab!!.position
+            }
+
+        })
     }
 
     private fun observeLiveDataFromViewModel() {

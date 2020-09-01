@@ -1,4 +1,4 @@
-package com.prosperekwerike.gadsleaderboard.models
+package com.prosperekwerike.gadsleaderboard.domain
 
 data class LearningLeadersCustomModel(
     val leaderName : String,

@@ -1,7 +1,5 @@
 package com.prosperekwerike.gadsleaderboard.network
 
-import com.prosperekwerike.gadsleaderboard.models.LearningLeadersModel
-import com.prosperekwerike.gadsleaderboard.models.SkillsIQLeadersModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -20,10 +18,10 @@ val retrofit : Retrofit = Retrofit.Builder()
 
 interface NetworkApiInterface {
     @GET("api/hours")
-    suspend fun getLearningLeader(): List<LearningLeadersModel>
+    suspend fun getLearningLeader(): List<LearningLeadersNetworkModel>
 
     @GET("api/skilliq")
-    suspend fun getSkillsIQLearning(): List<SkillsIQLeadersModel>
+    suspend fun getSkillsIQLearning(): List<SkillsIQLeadersNetworkModel>
 }
 
 object NetworkApi {

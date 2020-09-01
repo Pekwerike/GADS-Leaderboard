@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.prosperekwerike.gadsleaderboard.R
 import com.prosperekwerike.gadsleaderboard.databinding.SkillsIqLeaderLayoutItemBinding
-import com.prosperekwerike.gadsleaderboard.models.SkillsIQLeadersCustomModel
+import com.prosperekwerike.gadsleaderboard.domain.SkillsIQLeadersCustomModel
 
 class SkillsIQLeadersRecyclerViewAdapter :
     ListAdapter<SkillsIQLeadersCustomModel, SkillsIQLeadersRecyclerViewAdapter.LayoutItemViewHolder>

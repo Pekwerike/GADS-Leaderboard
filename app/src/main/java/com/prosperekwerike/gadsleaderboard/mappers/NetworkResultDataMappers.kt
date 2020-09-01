@@ -1,11 +1,11 @@
 package com.prosperekwerike.gadsleaderboard.mappers
 
-import com.prosperekwerike.gadsleaderboard.models.LearningLeadersCustomModel
-import com.prosperekwerike.gadsleaderboard.models.LearningLeadersModel
-import com.prosperekwerike.gadsleaderboard.models.SkillsIQLeadersCustomModel
-import com.prosperekwerike.gadsleaderboard.models.SkillsIQLeadersModel
+import com.prosperekwerike.gadsleaderboard.domain.LearningLeadersCustomModel
+import com.prosperekwerike.gadsleaderboard.network.LearningLeadersNetworkModel
+import com.prosperekwerike.gadsleaderboard.domain.SkillsIQLeadersCustomModel
+import com.prosperekwerike.gadsleaderboard.network.SkillsIQLeadersNetworkModel
 
-fun List<LearningLeadersModel>.convertToLearningLeadersCustomModel() :
+fun List<LearningLeadersNetworkModel>.convertToLearningLeadersCustomModel() :
       List<LearningLeadersCustomModel>{
     return map{
         LearningLeadersCustomModel(
@@ -16,7 +16,7 @@ fun List<LearningLeadersModel>.convertToLearningLeadersCustomModel() :
     }
 }
 
-fun List<SkillsIQLeadersModel>.convertToSkillsIQLeadersCustomModel() :
+fun List<SkillsIQLeadersNetworkModel>.convertToSkillsIQLeadersCustomModel() :
         List<SkillsIQLeadersCustomModel>{
     return map{
         SkillsIQLeadersCustomModel(

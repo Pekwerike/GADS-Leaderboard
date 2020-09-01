@@ -1,6 +1,6 @@
-package com.prosperekwerike.gadsleaderboard.models
+package com.prosperekwerike.gadsleaderboard.network
 
-data class LearningLeadersModel(
+data class LearningLeadersNetworkModel(
     val name : String,
     val hours : Int,
     val country : String,

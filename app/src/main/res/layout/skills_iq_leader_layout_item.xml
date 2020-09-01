@@ -6,7 +6,7 @@
 
         <variable
             name="skillsIQLeaderCustomModel"
-            type="com.prosperekwerike.gadsleaderboard.models.SkillsIQLeadersCustomModel" />
+            type="com.prosperekwerike.gadsleaderboard.domain.SkillsIQLeadersCustomModel" />
     </data>
 
 
@@ -24,10 +24,10 @@
 
             <ImageView
                 android:id="@+id/learning_leader_image_badge"
+                displayBadge="@{skillsIQLeaderCustomModel.leaderBadgeUrl}"
                 android:layout_width="100dp"
                 android:layout_height="70dp"
                 android:layout_margin="@dimen/standard_view_margin"
-                android:src="@color/colorPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +37,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto"
+                android:padding="@dimen/standard_view_padding"
                 android:text="@{skillsIQLeaderCustomModel.leaderName}"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/learning_leader_image_badge"
                 app:layout_constraintStart_toEndOf="@id/learning_leader_image_badge"
                 app:layout_constraintTop_toTopOf="@+id/learning_leader_image_badge" />
@@ -48,7 +52,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@{skillsIQLeaderCustomModel.leaderIQScoreAndCountry"
+                android:padding="@dimen/standard_view_padding"
+                android:text="@{skillsIQLeaderCustomModel.leaderIQScoreAndCountry}"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/learning_leader_image_badge"
                 app:layout_constraintStart_toEndOf="@id/learning_leader_image_badge"
                 app:layout_constraintTop_toBottomOf="@id/skills_iq_leader_full_name"

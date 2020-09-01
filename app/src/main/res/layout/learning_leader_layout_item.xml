@@ -6,7 +6,7 @@
 
         <variable
             name="learningLeaderModel"
-            type="com.prosperekwerike.gadsleaderboard.models.LearningLeadersCustomModel" />
+            type="com.prosperekwerike.gadsleaderboard.domain.LearningLeadersCustomModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

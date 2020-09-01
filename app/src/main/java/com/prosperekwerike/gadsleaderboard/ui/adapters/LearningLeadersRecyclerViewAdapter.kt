@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.prosperekwerike.gadsleaderboard.R
 import com.prosperekwerike.gadsleaderboard.databinding.LearningLeaderLayoutItemBinding
-import com.prosperekwerike.gadsleaderboard.models.LearningLeadersCustomModel
+import com.prosperekwerike.gadsleaderboard.domain.LearningLeadersCustomModel
 
 class LearningLeadersRecyclerViewAdapter : ListAdapter<LearningLeadersCustomModel,
         LearningLeadersRecyclerViewAdapter.LayoutViewHolder>

@@ -1,7 +1,6 @@
 package com.prosperekwerike.gadsleaderboard.viewmodels
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,48 +14,47 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HomepageActivityViewModel(application: Application)
-    : AndroidViewModel(application) {
+class HomepageActivityViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _learningLeadersCollection =
-            MutableLiveData<MutableList<LearningLeadersCustomModel>>()
-    val learningLeadersCollection : LiveData<MutableList<LearningLeadersCustomModel>>
-    get() = _learningLeadersCollection
+        MutableLiveData<MutableList<LearningLeadersCustomModel>>()
+    val learningLeadersCollection: LiveData<MutableList<LearningLeadersCustomModel>>
+        get() = _learningLeadersCollection
 
     private val _skillsIQLeadersCollection =
         MutableLiveData<MutableList<SkillsIQLeadersCustomModel>>()
-    val skillsIQLeadersCollection : LiveData<MutableList<SkillsIQLeadersCustomModel>>
-    get() = _skillsIQLeadersCollection
+    val skillsIQLeadersCollection: LiveData<MutableList<SkillsIQLeadersCustomModel>>
+        get() = _skillsIQLeadersCollection
 
     init {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 fetchListOfLearningLeaders()
             }
-            withContext(Dispatchers.IO){
+            withContext(Dispatchers.IO) {
                 fetchListOfSkillsIQLeaders()
             }
         }
     }
 
-   private fun fetchListOfLearningLeaders() {
+    private fun fetchListOfLearningLeaders() {
         viewModelScope.launch {
             try {
                 _learningLeadersCollection.value =
                     NetworkApi.retrofitApiService.getLearningLeader()
                         .convertToLearningLeadersCustomModel().toMutableList()
-            }catch (exception : Exception){
+            } catch (exception: Exception) {
 
             }
         }
     }
 
-    private suspend fun fetchListOfSkillsIQLeaders(){
+    private suspend fun fetchListOfSkillsIQLeaders() {
         try {
-           _skillsIQLeadersCollection.value =
-               NetworkApi.retrofitApiService.getSkillsIQLearning()
-                   .convertToSkillsIQLeadersCustomModel().toMutableList()
-        }catch (exception : Exception){
+            _skillsIQLeadersCollection.value =
+                NetworkApi.retrofitApiService.getSkillsIQLearning()
+                    .convertToSkillsIQLeadersCustomModel().toMutableList()
+        } catch (exception: Exception) {
 
         }
     }

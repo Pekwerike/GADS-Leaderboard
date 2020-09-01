@@ -11,20 +11,26 @@ import com.google.android.material.tabs.TabLayout
 import com.prosperekwerike.gadsleaderboard.R
 import com.prosperekwerike.gadsleaderboard.databinding.ActivityHomepageBinding
 import com.prosperekwerike.gadsleaderboard.models.LearningLeadersCustomModel
+import com.prosperekwerike.gadsleaderboard.models.SkillsIQLeadersCustomModel
 import com.prosperekwerike.gadsleaderboard.ui.adapters.HomepageViewPagerAdapter
 import com.prosperekwerike.gadsleaderboard.viewmodels.HomepageActivityViewModel
 
 class HomepageActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomepageBinding
-    private lateinit var homepageTabLayout : TabLayout
-    private lateinit var homepageViewPager : ViewPager
+    private lateinit var homepageTabLayout: TabLayout
+    private lateinit var homepageViewPager: ViewPager
     private val homepageViewModel: HomepageActivityViewModel by viewModels()
 
-    companion object{
-        val learningLeadersList : MutableLiveData<MutableList<LearningLeadersCustomModel>> by lazy {
+    companion object {
+        val learningLeadersList: MutableLiveData<MutableList<LearningLeadersCustomModel>> by lazy {
             MutableLiveData<MutableList<LearningLeadersCustomModel>>()
         }
+
+        val skillsIQLeadersList: MutableLiveData<MutableList<SkillsIQLeadersCustomModel>> by lazy {
+            MutableLiveData<MutableList<SkillsIQLeadersCustomModel>>()
+        }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_homepage)
@@ -34,10 +40,16 @@ class HomepageActivity : AppCompatActivity() {
 
     }
 
-    private fun observeLiveDataFromViewModel(){
-        homepageViewModel.learningLeadersCollection.observe(this, Observer{
+    private fun observeLiveDataFromViewModel() {
+        homepageViewModel.learningLeadersCollection.observe(this, Observer {
             it?.let {
                 learningLeadersList.value = it
+            }
+        })
+
+        homepageViewModel.skillsIQLeadersCollection.observe(this, Observer {
+            it?.let {
+                skillsIQLeadersList.value = it
             }
         })
     }

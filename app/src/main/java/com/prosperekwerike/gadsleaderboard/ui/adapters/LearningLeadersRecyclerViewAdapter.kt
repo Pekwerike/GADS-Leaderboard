@@ -15,22 +15,22 @@ class LearningLeadersRecyclerViewAdapter : ListAdapter<LearningLeadersCustomMode
     (learningLeadersRecyclerViewAdapterDiffUtil) {
 
     class LayoutViewHolder(
-        private var binding : LearningLeaderLayoutItemBinding
+        private var binding: LearningLeaderLayoutItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bindData(data : LearningLeadersCustomModel){
+        fun bindData(data: LearningLeadersCustomModel) {
             binding.learningLeaderModel = data
         }
 
         companion object {
-            fun createViewHolder(parent : ViewGroup) : LayoutViewHolder{
+            fun createViewHolder(parent: ViewGroup): LayoutViewHolder {
                 val layoutBinding =
                     DataBindingUtil.inflate<LearningLeaderLayoutItemBinding>(
-                    LayoutInflater.from(parent.context),
-                    R.layout.learning_leader_layout_item,
-                    parent,
-                    false
-                )
+                        LayoutInflater.from(parent.context),
+                        R.layout.learning_leader_layout_item,
+                        parent,
+                        false
+                    )
 
                 return LayoutViewHolder(layoutBinding)
             }
@@ -49,7 +49,7 @@ class LearningLeadersRecyclerViewAdapter : ListAdapter<LearningLeadersCustomMode
 
 private val learningLeadersRecyclerViewAdapterDiffUtil =
     object :
-        DiffUtil.ItemCallback<LearningLeadersCustomModel>(){
+        DiffUtil.ItemCallback<LearningLeadersCustomModel>() {
         override fun areItemsTheSame(
             oldItem: LearningLeadersCustomModel,
             newItem: LearningLeadersCustomModel
@@ -61,7 +61,7 @@ private val learningLeadersRecyclerViewAdapterDiffUtil =
             oldItem: LearningLeadersCustomModel,
             newItem: LearningLeadersCustomModel
         ): Boolean {
-           return oldItem == newItem
+            return oldItem == newItem
         }
 
     }

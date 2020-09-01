@@ -17,12 +17,6 @@ import kotlinx.coroutines.withContext
 
 class MainRepository(private val cacheDao: CacheDao) {
 
-    init {
-        CoroutineScope(Dispatchers.IO).launch {
-            refreshListOfLearningLeaders()
-            refreshListOfSkillsIQLeaders()
-        }
-    }
 
     val allLearningLeaders:
             LiveData<List<LearningLeadersCustomModel>> =

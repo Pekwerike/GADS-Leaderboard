@@ -30,6 +30,10 @@ class HomepageActivity : AppCompatActivity() {
         val skillsIQLeadersList: MutableLiveData<MutableList<SkillsIQLeadersCustomModel>> by lazy {
             MutableLiveData<MutableList<SkillsIQLeadersCustomModel>>()
         }
+
+        val refreshSkillsIQLeaders : MutableLiveData<Boolean> by lazy {
+            MutableLiveData<Boolean>(false)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,11 +42,23 @@ class HomepageActivity : AppCompatActivity() {
         initializeViews()
         homepageViewPager.adapter = HomepageViewPagerAdapter(2, supportFragmentManager)
         observeLiveDataFromViewModel()
+        observeLiveDataTriggedByFragments()
 
         homepageTabLayout.addTab(homepageTabLayout.newTab().setText("Learning Leaders"))
         homepageTabLayout.addTab(homepageTabLayout.newTab().setText("Skill IQ Leader"))
         attachTabLayoutWithViewpager()
 
+    }
+
+    private fun observeLiveDataTriggedByFragments(){
+        refreshSkillsIQLeaders.observe(this, Observer {
+            it?.let {
+                if(it){
+                    homepageViewModel.refreshSkillsIQLeaders()
+                    refreshSkillsIQLeaders.value = false
+                }
+            }
+        })
     }
 
     private fun attachTabLayoutWithViewpager() {

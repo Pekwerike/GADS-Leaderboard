@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.prosperekwerike.gadsleaderboard.R
 import com.prosperekwerike.gadsleaderboard.databinding.FragmentSkillIQLeadersBinding
 import com.prosperekwerike.gadsleaderboard.ui.HomepageActivity
@@ -18,6 +19,7 @@ import com.prosperekwerike.gadsleaderboard.ui.adapters.SkillsIQLeadersRecyclerVi
 class SkillIQLeaders : Fragment() {
     private lateinit var binding: FragmentSkillIQLeadersBinding
     private lateinit var skillsIQLeadersRecyclerView: RecyclerView
+    private lateinit var swipeToRefreshCollectionOfSkillsIQLeaders : SwipeRefreshLayout
     private lateinit var skillsIQLeadersRecyclerViewAdapter: SkillsIQLeadersRecyclerViewAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +37,7 @@ class SkillIQLeaders : Fragment() {
         skillsIQLeadersRecyclerView.adapter = skillsIQLeadersRecyclerViewAdapter
         HomepageActivity.skillsIQLeadersList.observe(viewLifecycleOwner, Observer {
             it?.let {
+                swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing = false
                 skillsIQLeadersRecyclerViewAdapter.submitList(it)
             }
         })
@@ -44,12 +47,19 @@ class SkillIQLeaders : Fragment() {
             false
         )
 
+        swipeToRefreshCollectionOfSkillsIQLeaders.setOnRefreshListener {
+            if(swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing){
+                HomepageActivity.refreshSkillsIQLeaders.value = true
+            }
+        }
+
 
         return binding.root
     }
 
     private fun initializeViews() {
         skillsIQLeadersRecyclerView = binding.skillsIqLeadersRecyclerview
+        swipeToRefreshCollectionOfSkillsIQLeaders = binding.swipeToRefreshCollectionOfSkillsIqLeaders
     }
 
 

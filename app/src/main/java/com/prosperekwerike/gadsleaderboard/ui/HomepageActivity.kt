@@ -70,13 +70,13 @@ class HomepageActivity : AppCompatActivity() {
     private fun observeLiveDataFromViewModel() {
         homepageViewModel.learningLeadersCollection.observe(this, Observer {
             it?.let {
-                learningLeadersList.value = it
+                learningLeadersList.value = it.toMutableList()
             }
         })
 
         homepageViewModel.skillsIQLeadersCollection.observe(this, Observer {
             it?.let {
-                skillsIQLeadersList.value = it
+                skillsIQLeadersList.value = it.toMutableList()
             }
         })
     }

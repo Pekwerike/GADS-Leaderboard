@@ -21,7 +21,7 @@ interface NetworkApiInterface {
     suspend fun getLearningLeader(): List<LearningLeadersNetworkModel>
 
     @GET("api/skilliq")
-    suspend fun getSkillsIQLearning(): List<SkillsIQLeadersNetworkModel>
+    suspend fun getSkillsIQLeaders(): List<SkillsIQLeadersNetworkModel>
 }
 
 object NetworkApi {

@@ -10,11 +10,19 @@ import com.prosperekwerike.gadsleaderboard.mappers.convertToLearningLeadersEntit
 import com.prosperekwerike.gadsleaderboard.mappers.convertToSkillsIQLeadersCustomModel
 import com.prosperekwerike.gadsleaderboard.mappers.convertToSkillsIQLeadersEntity
 import com.prosperekwerike.gadsleaderboard.network.NetworkApi
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainRepository(private val cacheDao: CacheDao) {
 
+    init {
+        CoroutineScope(Dispatchers.IO).launch {
+            refreshListOfLearningLeaders()
+            refreshListOfSkillsIQLeaders()
+        }
+    }
 
     val allLearningLeaders:
             LiveData<List<LearningLeadersCustomModel>> =
@@ -33,7 +41,7 @@ class MainRepository(private val cacheDao: CacheDao) {
             try {
                 val learningLeaders =
                     NetworkApi.retrofitApiService.getLearningLeader()
-                cacheDao.insertAllLearningLeaders(learningLeaders.convertToLearningLeadersEntity())
+                cacheDao.refreshLearningLeaders(learningLeaders.convertToLearningLeadersEntity())
             } catch (exception: Exception) {
 
             }
@@ -45,7 +53,7 @@ class MainRepository(private val cacheDao: CacheDao) {
             try {
                 val skillsIQLeaders =
                     NetworkApi.retrofitApiService.getSkillsIQLeaders()
-                cacheDao.insertAllSkillIQLeaders(skillsIQLeaders.convertToSkillsIQLeadersEntity())
+                cacheDao.refreshSkillsIQLeaders(skillsIQLeaders.convertToSkillsIQLeadersEntity())
             } catch (exception: Exception) {
 
             }

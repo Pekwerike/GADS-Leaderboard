@@ -1,6 +1,7 @@
 package com.prosperekwerike.gadsleaderboard.ui
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -68,13 +69,14 @@ class HomepageActivity : AppCompatActivity() {
     }
 
     private fun observeLiveDataFromViewModel() {
-        homepageViewModel.learningLeadersCollection.observe(this, Observer {
+        homepageViewModel.learningLeaders.observe(this, Observer {
             it?.let {
                 learningLeadersList.value = it.toMutableList()
+                Toast.makeText(this, it.size.toString(), Toast.LENGTH_SHORT).show()
             }
         })
 
-        homepageViewModel.skillsIQLeadersCollection.observe(this, Observer {
+        homepageViewModel.skillIQLeaders.observe(this, Observer {
             it?.let {
                 skillsIQLeadersList.value = it.toMutableList()
             }

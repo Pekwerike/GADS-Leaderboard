@@ -1,0 +1,3 @@
+package com.prosperekwerike.gadsleaderboard.repository
+
+class MainRepository

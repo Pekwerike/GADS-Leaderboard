@@ -1,6 +1,7 @@
 package com.prosperekwerike.gadsleaderboard.viewmodels
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -50,6 +51,8 @@ class HomepageActivityViewModel(application: Application)
 
     private fun fetchListOfSkillsIQLeaders(){
         try {
+
+        }catch (exception : Exception){
 
         }
     }

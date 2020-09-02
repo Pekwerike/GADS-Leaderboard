@@ -36,18 +36,7 @@ class SkillIQLeaders : Fragment() {
         initializeViews()
         skillsIQLeadersRecyclerViewAdapter = SkillsIQLeadersRecyclerViewAdapter()
         skillsIQLeadersRecyclerView.adapter = skillsIQLeadersRecyclerViewAdapter
-        HomepageActivity.skillsIQLeadersList.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                if (it.size == 0) {
-                    swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing = true
-                    HomepageActivity.refreshSkillsIQLeaders.value = true
-                } else {
-                    swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing = false
-                    skillsIQLeadersRecyclerViewAdapter.submitList(it)
-                    displayMessage("updated")
-                }
-            }
-        })
+        observeLiveDataFromHomepageActivity()
         skillsIQLeadersRecyclerView.layoutManager = LinearLayoutManager(
             requireContext(),
             LinearLayoutManager.VERTICAL,
@@ -63,6 +52,32 @@ class SkillIQLeaders : Fragment() {
 
         return binding.root
     }
+
+    private fun observeLiveDataFromHomepageActivity() {
+        HomepageActivity.skillsIQLeadersList.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it.size == 0) {
+                    swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing = true
+                    HomepageActivity.refreshSkillsIQLeaders.value = true
+                } else {
+                    swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing = false
+                    skillsIQLeadersRecyclerViewAdapter.submitList(it)
+                    displayMessage("updated")
+                }
+            }
+        })
+
+        HomepageActivity.networkErrorWhileLoadingData.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it && swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing) {
+                    swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing = false
+                    displayMessage("Couldn't refresh list")
+                    HomepageActivity.networkErrorWhileLoadingData.value = false
+                }
+            }
+        })
+    }
+
 
     private fun displayMessage(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()

@@ -1,7 +1,6 @@
 package com.prosperekwerike.gadsleaderboard.ui
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -31,11 +30,15 @@ class HomepageActivity : AppCompatActivity() {
             MutableLiveData<MutableList<SkillsIQLeadersCustomModel>>()
         }
 
-        val refreshSkillsIQLeaders : MutableLiveData<Boolean> by lazy {
+        val refreshSkillsIQLeaders: MutableLiveData<Boolean> by lazy {
             MutableLiveData<Boolean>(false)
         }
 
-        val refreshLearningLeaders : MutableLiveData<Boolean> by lazy {
+        val refreshLearningLeaders: MutableLiveData<Boolean> by lazy {
+            MutableLiveData<Boolean>(false)
+        }
+
+        val networkErrorWhileLoadingData: MutableLiveData<Boolean> by lazy {
             MutableLiveData<Boolean>(false)
         }
     }
@@ -54,10 +57,10 @@ class HomepageActivity : AppCompatActivity() {
 
     }
 
-    private fun observeLiveDataTriggeredByFragments(){
+    private fun observeLiveDataTriggeredByFragments() {
         refreshSkillsIQLeaders.observe(this, Observer {
             it?.let {
-                if(it){
+                if (it) {
                     homepageViewModel.refreshSkillsIQLeaders()
                     refreshSkillsIQLeaders.value = false
                 }
@@ -65,7 +68,7 @@ class HomepageActivity : AppCompatActivity() {
         })
         refreshLearningLeaders.observe(this, Observer {
             it?.let {
-                if(it){
+                if (it) {
                     homepageViewModel.refreshLearningLeaders()
                     refreshLearningLeaders.value = false
                 }
@@ -106,6 +109,14 @@ class HomepageActivity : AppCompatActivity() {
         homepageViewModel.skillIQLeaders.observe(this, Observer {
             it?.let {
                 skillsIQLeadersList.value = it.toMutableList()
+            }
+        })
+
+        homepageViewModel.networkError.observe(this, Observer {
+            it?.let {
+                if (it)
+                    networkErrorWhileLoadingData.value = it
+
             }
         })
     }

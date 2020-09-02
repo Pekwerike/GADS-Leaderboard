@@ -18,6 +18,8 @@ class HomepageActivityViewModel(application: Application) : AndroidViewModel(app
     val learningLeaders = mainRepository.allLearningLeaders
     val skillIQLeaders = mainRepository.allSkillIQLeaders
 
+    val networkError = mainRepository.networkErrorFromLoading
+
     fun refreshSkillsIQLeaders() {
         viewModelScope.launch {
             mainRepository.refreshListOfSkillsIQLeaders()

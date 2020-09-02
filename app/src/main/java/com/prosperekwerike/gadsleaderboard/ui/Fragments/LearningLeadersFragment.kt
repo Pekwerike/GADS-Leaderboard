@@ -35,18 +35,7 @@ class LearningLeadersFragment : Fragment() {
         initializeViews()
         learningLeadersRecyclerViewAdapter = LearningLeadersRecyclerViewAdapter()
         learningLeadersRecyclerView.adapter = learningLeadersRecyclerViewAdapter
-        HomepageActivity.learningLeadersList.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                if (it.size == 0) {
-                    HomepageActivity.refreshLearningLeaders.value = true
-                    swipeToRefreshLearningLeaders.isRefreshing = true
-                } else {
-                    swipeToRefreshLearningLeaders.isRefreshing = false
-                    learningLeadersRecyclerViewAdapter.submitList(it)
-                    displayMessage("updated")
-                }
-            }
-        })
+        observeLiveDataFromHomepageActivity()
 
         learningLeadersRecyclerView.layoutManager = LinearLayoutManager(
             requireContext(),
@@ -61,9 +50,36 @@ class LearningLeadersFragment : Fragment() {
 
         return binding.root
     }
+
+    private fun observeLiveDataFromHomepageActivity() {
+        HomepageActivity.learningLeadersList.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it.size == 0) {
+                    HomepageActivity.refreshLearningLeaders.value = true
+                    swipeToRefreshLearningLeaders.isRefreshing = true
+                } else {
+                    swipeToRefreshLearningLeaders.isRefreshing = false
+                    learningLeadersRecyclerViewAdapter.submitList(it)
+                    displayMessage("updated")
+                }
+            }
+        })
+
+        HomepageActivity.networkErrorWhileLoadingData.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it && swipeToRefreshLearningLeaders.isRefreshing) {
+                    swipeToRefreshLearningLeaders.isRefreshing = false
+                    displayMessage("Couldn't refresh list")
+                    HomepageActivity.networkErrorWhileLoadingData.value = false
+                }
+            }
+        })
+    }
+
     private fun displayMessage(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
+
     private fun initializeViews() {
         learningLeadersRecyclerView = binding.learningLeadersRecyclerview
         swipeToRefreshLearningLeaders = binding.swipeToRefreshCollectionOfLearningLeaders

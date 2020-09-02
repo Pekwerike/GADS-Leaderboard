@@ -1,6 +1,7 @@
 package com.prosperekwerike.gadsleaderboard.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.prosperekwerike.gadsleaderboard.cache.CacheDao
 import com.prosperekwerike.gadsleaderboard.domain.LearningLeadersCustomModel
@@ -30,6 +31,10 @@ class MainRepository(private val cacheDao: CacheDao) {
             it.convertToSkillsIQLeadersCustomModel()
         }
 
+    private val _networkErrorFromLoading = MutableLiveData<Boolean>()
+    val networkErrorFromLoading : LiveData<Boolean>
+    get() = _networkErrorFromLoading
+
     suspend fun refreshListOfLearningLeaders() {
         withContext(Dispatchers.IO) {
             try {
@@ -37,7 +42,10 @@ class MainRepository(private val cacheDao: CacheDao) {
                     NetworkApi.retrofitApiService.getLearningLeader()
                 cacheDao.refreshLearningLeaders(learningLeaders.convertToLearningLeadersEntity())
             } catch (exception: Exception) {
-
+                //no internet or network error
+                withContext(Dispatchers.Main){
+                    _networkErrorFromLoading.value = true
+                }
             }
         }
     }
@@ -49,7 +57,9 @@ class MainRepository(private val cacheDao: CacheDao) {
                     NetworkApi.retrofitApiService.getSkillsIQLeaders()
                 cacheDao.refreshSkillsIQLeaders(skillsIQLeaders.convertToSkillsIQLeadersEntity())
             } catch (exception: Exception) {
-
+                withContext(Dispatchers.Main){
+                    _networkErrorFromLoading.value = true
+                }
             }
         }
     }

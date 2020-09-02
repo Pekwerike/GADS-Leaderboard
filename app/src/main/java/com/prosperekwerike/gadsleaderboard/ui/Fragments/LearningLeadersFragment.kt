@@ -57,10 +57,12 @@ class LearningLeadersFragment : Fragment() {
                 if (it.size == 0) {
                     HomepageActivity.refreshLearningLeaders.value = true
                     swipeToRefreshLearningLeaders.isRefreshing = true
-                } else {
+                } else if(it.size != 0 && swipeToRefreshLearningLeaders.isRefreshing) {
                     swipeToRefreshLearningLeaders.isRefreshing = false
                     learningLeadersRecyclerViewAdapter.submitList(it)
                     displayMessage("updated")
+                }else {
+                    learningLeadersRecyclerViewAdapter.submitList(it)
                 }
             }
         })

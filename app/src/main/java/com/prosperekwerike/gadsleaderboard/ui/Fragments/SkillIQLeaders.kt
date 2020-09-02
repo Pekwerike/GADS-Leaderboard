@@ -59,10 +59,12 @@ class SkillIQLeaders : Fragment() {
                 if (it.size == 0) {
                     swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing = true
                     HomepageActivity.refreshSkillsIQLeaders.value = true
-                } else {
+                } else if(it.size != 0 && swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing){
                     swipeToRefreshCollectionOfSkillsIQLeaders.isRefreshing = false
                     skillsIQLeadersRecyclerViewAdapter.submitList(it)
                     displayMessage("updated")
+                }else {
+                    skillsIQLeadersRecyclerViewAdapter.submitList(it)
                 }
             }
         })

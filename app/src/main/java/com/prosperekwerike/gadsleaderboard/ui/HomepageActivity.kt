@@ -49,7 +49,7 @@ class HomepageActivity : AppCompatActivity() {
         observeLiveDataTriggeredByFragments()
 
         homepageTabLayout.addTab(homepageTabLayout.newTab().setText("Learning Leaders"))
-        homepageTabLayout.addTab(homepageTabLayout.newTab().setText("Skill IQ Leader"))
+        homepageTabLayout.addTab(homepageTabLayout.newTab().setText("Skill IQ Leaders"))
         attachTabLayoutWithViewpager()
 
     }

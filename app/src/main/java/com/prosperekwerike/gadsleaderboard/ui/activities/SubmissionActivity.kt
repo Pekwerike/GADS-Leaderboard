@@ -1,12 +1,14 @@
 package com.prosperekwerike.gadsleaderboard.ui.activities
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 import com.prosperekwerike.gadsleaderboard.R
 import com.prosperekwerike.gadsleaderboard.databinding.ActivitySubmissionBinding
+import com.prosperekwerike.gadsleaderboard.viewmodels.SubmissionActivityViewModel
 
 class SubmissionActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySubmissionBinding
@@ -15,6 +17,8 @@ class SubmissionActivity : AppCompatActivity() {
     private lateinit var emailAddressTextInputLayout: TextInputLayout
     private lateinit var projectGitHubLinkTextInputLayout: TextInputLayout
     private lateinit var submitButton : MaterialButton
+
+    val submissionActivityViewModel : SubmissionActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +31,12 @@ class SubmissionActivity : AppCompatActivity() {
             var emailAddress = emailAddressTextInputLayout.editText!!.text.toString()
             var projectGitHubLink = projectGitHubLinkTextInputLayout.editText!!.text.toString()
 
-
+            submissionActivityViewModel.submitProject(
+                firstName = firstName,
+                lastName = lastName,
+                emailAddress = emailAddress,
+                projectGithubLink = projectGitHubLink
+            )
         }
     }
 

@@ -23,13 +23,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/first_and_last_name_view_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:orientation="horizontal"
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,18 +85,61 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_view_margin"
+        android:layout_marginLeft="@dimen/standard_view_margin"
+        android:layout_marginTop="@dimen/text_input_layout_margin_top"
+        android:layout_marginRight="@dimen/standard_view_margin"
         android:hint="Email Address"
         app:boxCornerRadiusBottomEnd="@dimen/text_input_box_corner_radius"
         app:boxCornerRadiusBottomStart="@dimen/text_input_box_corner_radius"
         app:boxCornerRadiusTopEnd="@dimen/text_input_box_corner_radius"
         app:boxCornerRadiusTopStart="@dimen/text_input_box_corner_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/first_and_last_name_view_group">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/project_github_link_text_input_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/standard_view_margin"
+        android:layout_marginTop="@dimen/text_input_layout_margin_top"
+        android:layout_marginRight="@dimen/standard_view_margin"
+        android:hint="Project on GITHUB (link)"
+        app:boxCornerRadiusBottomEnd="@dimen/text_input_box_corner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/text_input_box_corner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/text_input_box_corner_radius"
+        app:boxCornerRadiusTopStart="@dimen/text_input_box_corner_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email_address_text_input_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="@color/goldColor"
+        android:text="Submit"
+        android:textAppearance="@style/MyCustomTabLayoutTextAppearance"
+        app:cornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/project_github_link_text_input_layout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

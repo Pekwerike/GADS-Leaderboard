@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 import com.prosperekwerike.gadsleaderboard.R
@@ -12,19 +13,32 @@ import com.prosperekwerike.gadsleaderboard.viewmodels.SubmissionActivityViewMode
 
 class SubmissionActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySubmissionBinding
-    private lateinit var firstNameTextInputLayout : TextInputLayout
-    private lateinit var lastNameTextInputLayout : TextInputLayout
+    private lateinit var firstNameTextInputLayout: TextInputLayout
+    private lateinit var lastNameTextInputLayout: TextInputLayout
     private lateinit var emailAddressTextInputLayout: TextInputLayout
     private lateinit var projectGitHubLinkTextInputLayout: TextInputLayout
-    private lateinit var submitButton : MaterialButton
+    private lateinit var submitButton: MaterialButton
 
-    val submissionActivityViewModel : SubmissionActivityViewModel by viewModels()
+    val submissionActivityViewModel: SubmissionActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_submission)
         initializeViews()
+        setOnClickListenersOnViews()
+        observeLiveDataFromViewModel()
+    }
 
+    private fun observeLiveDataFromViewModel() {
+        submissionActivityViewModel.networkErrorWhileSubmittingProject.observe(this,
+            Observer {
+                it?.let {
+                   //show project submission failed alert dialog to user 
+                }
+            })
+    }
+
+    private fun setOnClickListenersOnViews() {
         submitButton.setOnClickListener {
             var firstName = firstNameTextInputLayout.editText!!.text.toString()
             var lastName = lastNameTextInputLayout.editText!!.text.toString()
@@ -40,7 +54,7 @@ class SubmissionActivity : AppCompatActivity() {
         }
     }
 
-    private fun initializeViews(){
+    private fun initializeViews() {
         firstNameTextInputLayout = binding.firstNameTextInputLayout
         lastNameTextInputLayout = binding.lastNameTextInputLayout
         emailAddressTextInputLayout = binding.emailAddressTextInputLayout

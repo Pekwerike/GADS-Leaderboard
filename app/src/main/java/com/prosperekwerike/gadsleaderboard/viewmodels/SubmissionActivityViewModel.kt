@@ -14,6 +14,8 @@ import kotlinx.coroutines.launch
 class SubmissionActivityViewModel(application: Application) : AndroidViewModel(application){
 
     private val mainRepository = MainRepository(getLocalCache(application).cacheDao())
+    val networkErrorWhileSubmittingProject =
+        mainRepository.networkErrorWhileSubmittingProject
 
     fun submitProject(
         firstName : String,

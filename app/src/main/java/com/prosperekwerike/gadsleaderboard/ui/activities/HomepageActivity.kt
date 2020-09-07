@@ -1,4 +1,4 @@
-package com.prosperekwerike.gadsleaderboard.ui
+package com.prosperekwerike.gadsleaderboard.ui.activities
 
 import android.os.Bundle
 import androidx.activity.viewModels

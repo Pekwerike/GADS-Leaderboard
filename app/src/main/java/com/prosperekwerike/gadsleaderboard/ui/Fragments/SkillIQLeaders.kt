@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.prosperekwerike.gadsleaderboard.R
 import com.prosperekwerike.gadsleaderboard.databinding.FragmentSkillIQLeadersBinding
-import com.prosperekwerike.gadsleaderboard.ui.HomepageActivity
+import com.prosperekwerike.gadsleaderboard.ui.activities.HomepageActivity
 import com.prosperekwerike.gadsleaderboard.ui.adapters.SkillsIQLeadersRecyclerViewAdapter
 
 

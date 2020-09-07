@@ -27,7 +27,7 @@ class SubmissionActivity : AppCompatActivity() {
             var emailAddress = emailAddressTextInputLayout.editText!!.text.toString()
             var projectGitHubLink = projectGitHubLinkTextInputLayout.editText!!.text.toString()
 
-            
+
         }
     }
 

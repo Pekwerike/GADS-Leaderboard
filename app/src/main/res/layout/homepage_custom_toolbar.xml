@@ -31,13 +31,13 @@
             android:id="@+id/customToolbarSubmitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_view_margin"
-            app:cornerRadius="12dp"
+            android:layout_margin="8dp"
             android:text="Submit"
-            app:rippleColor="@color/goldColor"
             android:textAppearance="@style/MyCustomTabLayoutTextAppearance"
             android:textColor="@android:color/background_dark"
-            app:backgroundTint="@android:color/white" />
+            app:backgroundTint="@android:color/white"
+            app:cornerRadius="12dp"
+            app:rippleColor="@color/goldColor" />
     </LinearLayout>
 
 

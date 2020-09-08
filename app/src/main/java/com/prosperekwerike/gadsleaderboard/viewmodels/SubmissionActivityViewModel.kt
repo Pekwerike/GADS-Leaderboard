@@ -17,6 +17,8 @@ class SubmissionActivityViewModel(application: Application) : AndroidViewModel(a
     val networkErrorWhileSubmittingProject =
         mainRepository.networkErrorWhileSubmittingProject
 
+    val submissionSuccessfullySignal = mainRepository.projectSubmittedSuccessfullySignal 
+
     fun submitProject(
         firstName : String,
         lastName : String,

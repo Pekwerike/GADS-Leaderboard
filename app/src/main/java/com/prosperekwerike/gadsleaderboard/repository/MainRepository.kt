@@ -40,6 +40,10 @@ class MainRepository(private val cacheDao: CacheDao) {
     val networkErrorWhileSubmittingProject : LiveData<Boolean>
     get() = _networkErrorWhileSubmittingProject
 
+    private val _projectSubmittedSuccessfullySignal = MutableLiveData<Boolean>()
+    val projectSubmittedSuccessfullySignal : LiveData<Boolean>
+    get() = _projectSubmittedSuccessfullySignal
+
     suspend fun refreshListOfLearningLeaders() {
         withContext(Dispatchers.IO) {
             try {
@@ -83,6 +87,11 @@ class MainRepository(private val cacheDao: CacheDao) {
                     emailAddress = emailAddress,
                     linkToProject = projectGitHubLink
                 )
+
+                withContext(Dispatchers.Main){
+                    //use live data to signify that the project was submitted successfully
+                    _projectSubmittedSuccessfullySignal.value = true
+                }
 
             }catch (exception: Exception){
                 //notify the user that the process to submit video failed

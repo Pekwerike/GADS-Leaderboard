@@ -15,6 +15,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.prosperekwerike.gadsleaderboard.R
 import com.prosperekwerike.gadsleaderboard.databinding.ActivitySubmissionBinding
 import com.prosperekwerike.gadsleaderboard.databinding.SubmissionNotSuccessfulCustomAlertDialogLayoutBinding
+import com.prosperekwerike.gadsleaderboard.databinding.SubmissionSuccessfullCustomAlertDialogLayoutBinding
 import com.prosperekwerike.gadsleaderboard.databinding.SubmitProjectCustomAlertDialogLayoutBinding
 import com.prosperekwerike.gadsleaderboard.viewmodels.SubmissionActivityViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -60,12 +61,11 @@ class SubmissionActivity : AppCompatActivity() {
                         R.drawable.alert_dialog_window_background
                     ))
 
-                    submissionAlertDialog.show()
+                    submissionAlertDialog.setOnCancelListener {
+                        showFormViews()
+                    }
 
-                    /*CoroutineScope(Dispatchers.Main).launch {
-                        delay(100)
-                        submissionAlertDialog.cancel()
-                    }*/
+                    submissionAlertDialog.show()
 
                 }
             })
@@ -74,6 +74,18 @@ class SubmissionActivity : AppCompatActivity() {
         Observer {
             it?.let{
                 //show project submission was successful alert dialog to user
+                val submissionSuccessfulAlertDialog = AlertDialog.Builder(this)
+                    .create()
+                val submissionSuccessfulLayout = DataBindingUtil
+                    .inflate<SubmissionSuccessfullCustomAlertDialogLayoutBinding>(
+                        LayoutInflater.from(this),
+                        R.layout.submission_successfull_custom_alert_dialog_layout,
+                        null,
+                        false
+                    )
+
+                submissionSuccessfulAlertDialog.setView(submissionSuccessfulLayout.root)
+                submissionSuccessfulAlertDialog.show()
             }
         })
     }

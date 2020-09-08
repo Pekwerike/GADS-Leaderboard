@@ -7,29 +7,35 @@
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
 
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_gravity="center"
             android:layout_margin="@dimen/standard_view_margin"
             android:padding="@dimen/standard_view_padding"
             android:src="@drawable/ic_check_or_pass"
-            app:tint="@android:color/holo_green_dark"
-            android:layout_gravity="center" />
+            app:tint="@android:color/holo_green_dark" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_view_margin"
+            android:layout_marginStart="@dimen/standard_view_margin"
+            android:layout_marginLeft="@dimen/standard_view_margin"
+            android:layout_marginTop="@dimen/standard_view_margin"
+            android:layout_marginEnd="@dimen/standard_view_margin"
+            android:layout_marginRight="@dimen/standard_view_margin"
+            android:layout_marginBottom="24dp"
             android:fontFamily="@font/roboto_medium"
             android:padding="@dimen/standard_view_padding"
             android:text="Submission Successful"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </layout>

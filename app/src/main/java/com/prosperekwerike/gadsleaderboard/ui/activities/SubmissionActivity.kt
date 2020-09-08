@@ -23,7 +23,7 @@ class SubmissionActivity : AppCompatActivity() {
     private lateinit var projectGitHubLinkTextInputLayout: TextInputLayout
     private lateinit var submitButton: MaterialButton
 
-   private val submissionActivityViewModel: SubmissionActivityViewModel by viewModels()
+    private val submissionActivityViewModel: SubmissionActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,7 @@ class SubmissionActivity : AppCompatActivity() {
         submissionActivityViewModel.networkErrorWhileSubmittingProject.observe(this,
             Observer {
                 it?.let {
-                   //show project submission failed alert dialog to user
+                    //show project submission failed alert dialog to user
                 }
             })
     }
@@ -60,7 +60,7 @@ class SubmissionActivity : AppCompatActivity() {
 
             //attach a click listener to the submit button in the customSubmitProjectAlertDialogLayout
             // to submit the project
-            customSubmitProjectAlertDialogLayout.confirmProjectSubmissionButton.setOnClickListener{
+            customSubmitProjectAlertDialogLayout.confirmProjectSubmissionButton.setOnClickListener {
                 submissionActivityViewModel.submitProject(
                     firstName = firstName,
                     lastName = lastName,
@@ -68,6 +68,11 @@ class SubmissionActivity : AppCompatActivity() {
                     projectGithubLink = projectGitHubLink
                 )
                 Toast.makeText(this, "Submitting project", Toast.LENGTH_SHORT).show()
+            }
+
+            //attach a click listener to the close project submission button
+            customSubmitProjectAlertDialogLayout.closeProjectSubmissionAlertDialog.setOnClickListener {
+                alertDialog.cancel()
             }
 
             alertDialog.setView(customSubmitProjectAlertDialogLayout.root)

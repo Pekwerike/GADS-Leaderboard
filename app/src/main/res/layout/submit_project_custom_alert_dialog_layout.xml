@@ -12,13 +12,14 @@
         android:orientation="vertical">
 
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <Button
+            android:id="@+id/close_project_submission_alert_dialog"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="end"
             android:layout_margin="@dimen/standard_view_margin"
             android:padding="@dimen/standard_view_padding"
-            android:src="@drawable/ic_cancel_icon" />
+            android:background="@drawable/ic_cancel_icon"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,7 +46,7 @@
             android:layout_marginBottom="24dp"
             android:padding="@dimen/standard_view_padding"
             android:text="Yes"
-            app:strokeWidth="3dp"
+            app:strokeWidth="2dp"
             android:textColor="@color/goldColor"
             android:textSize="16sp"
             app:cornerRadius="5dp"

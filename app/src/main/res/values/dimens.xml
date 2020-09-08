@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="standard_view_margin">10dp</dimen>
-    <dimen name="standard_view_padding">5dp</dimen>
+    <dimen name="standard_view_margin">12dp</dimen>
+    <dimen name="standard_view_padding">6dp</dimen>
     <dimen name="text_input_box_corner_radius">5dp</dimen>
     <dimen name="text_input_layout_margin_top">32dp</dimen>
 </resources>

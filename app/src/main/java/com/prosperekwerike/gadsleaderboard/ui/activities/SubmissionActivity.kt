@@ -1,7 +1,10 @@
 package com.prosperekwerike.gadsleaderboard.ui.activities
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -9,6 +12,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 import com.prosperekwerike.gadsleaderboard.R
 import com.prosperekwerike.gadsleaderboard.databinding.ActivitySubmissionBinding
+import com.prosperekwerike.gadsleaderboard.databinding.SubmitProjectCustomAlertDialogLayoutBinding
 import com.prosperekwerike.gadsleaderboard.viewmodels.SubmissionActivityViewModel
 
 class SubmissionActivity : AppCompatActivity() {
@@ -45,12 +49,32 @@ class SubmissionActivity : AppCompatActivity() {
             var emailAddress = emailAddressTextInputLayout.editText!!.text.toString()
             var projectGitHubLink = projectGitHubLinkTextInputLayout.editText!!.text.toString()
 
-            submissionActivityViewModel.submitProject(
-                firstName = firstName,
-                lastName = lastName,
-                emailAddress = emailAddress,
-                projectGithubLink = projectGitHubLink
-            )
+            val alertDialog = AlertDialog.Builder(this).create()
+            val customSubmitProjectAlertDialogLayout =
+                DataBindingUtil.inflate<SubmitProjectCustomAlertDialogLayoutBinding>(
+                    LayoutInflater.from(this),
+                    R.layout.submit_project_custom_alert_dialog_layout,
+                    null,
+                    false
+                )
+
+            //attach a click listener to the submit button in the customSubmitProjectAlertDialogLayout
+            // to submit the project
+            customSubmitProjectAlertDialogLayout.confirmProjectSubmissionButton.setOnClickListener{
+                submissionActivityViewModel.submitProject(
+                    firstName = firstName,
+                    lastName = lastName,
+                    emailAddress = emailAddress,
+                    projectGithubLink = projectGitHubLink
+                )
+                Toast.makeText(this, "Submitting project", Toast.LENGTH_SHORT).show()
+            }
+
+            alertDialog.setView(customSubmitProjectAlertDialogLayout.root)
+            alertDialog
+                .window!!
+                .setBackgroundDrawable(resources.getDrawable(R.drawable.alert_dialog_window_background))
+            alertDialog.show()
         }
     }
 

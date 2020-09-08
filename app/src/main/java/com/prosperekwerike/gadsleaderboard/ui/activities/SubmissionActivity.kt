@@ -2,6 +2,7 @@ package com.prosperekwerike.gadsleaderboard.ui.activities
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -44,6 +45,7 @@ class SubmissionActivity : AppCompatActivity() {
         submissionActivityViewModel.networkErrorWhileSubmittingProject.observe(this,
             Observer {
                 it?.let {
+                    hideFormViews()
                     val submissionAlertDialog = AlertDialog.Builder(this).create()
                     //show project submission failed alert dialog to user
                     val submissionFailedAlertDialogLayout = DataBindingUtil
@@ -60,10 +62,10 @@ class SubmissionActivity : AppCompatActivity() {
 
                     submissionAlertDialog.show()
 
-                    CoroutineScope(Dispatchers.Main).launch {
+                    /*CoroutineScope(Dispatchers.Main).launch {
                         delay(100)
                         submissionAlertDialog.cancel()
-                    }
+                    }*/
 
                 }
             })
@@ -78,6 +80,7 @@ class SubmissionActivity : AppCompatActivity() {
 
     private fun setOnClickListenersOnViews() {
         submitButton.setOnClickListener {
+            hideFormViews()
             var firstName = firstNameTextInputLayout.editText!!.text.toString()
             var lastName = lastNameTextInputLayout.editText!!.text.toString()
             var emailAddress = emailAddressTextInputLayout.editText!!.text.toString()
@@ -110,6 +113,10 @@ class SubmissionActivity : AppCompatActivity() {
                 alertDialog.cancel()
             }
 
+            alertDialog.setOnCancelListener {
+                showFormViews()
+            }
+
             alertDialog.setView(customSubmitProjectAlertDialogLayout.root)
             alertDialog
                 .window!!
@@ -121,6 +128,22 @@ class SubmissionActivity : AppCompatActivity() {
         submitProjectCustomToolbar.setNavigationOnClickListener {
             supportFinishAfterTransition()
         }
+    }
+
+    private fun hideFormViews(){
+        emailAddressTextInputLayout.visibility = View.INVISIBLE
+        firstNameTextInputLayout.visibility = View.INVISIBLE
+        lastNameTextInputLayout.visibility = View.INVISIBLE
+        projectGitHubLinkTextInputLayout.visibility = View.INVISIBLE
+        submitButton.visibility = View.INVISIBLE
+    }
+
+    private fun showFormViews(){
+        emailAddressTextInputLayout.visibility = View.VISIBLE
+        firstNameTextInputLayout.visibility = View.VISIBLE
+        lastNameTextInputLayout.visibility = View.VISIBLE
+        projectGitHubLinkTextInputLayout.visibility = View.VISIBLE
+        submitButton.visibility = View.VISIBLE
     }
 
     private fun initializeViews() {

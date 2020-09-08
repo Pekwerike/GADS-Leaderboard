@@ -9,7 +9,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
-const val NETWORK_POST_BASE_URL = "https://docs.google.com/forms/d/e"
+const val NETWORK_POST_BASE_URL = "https://docs.google.com/forms/d/e/"
 
 private val network_post_moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())

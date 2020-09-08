@@ -15,6 +15,10 @@ import com.prosperekwerike.gadsleaderboard.R
 import com.prosperekwerike.gadsleaderboard.databinding.ActivitySubmissionBinding
 import com.prosperekwerike.gadsleaderboard.databinding.SubmitProjectCustomAlertDialogLayoutBinding
 import com.prosperekwerike.gadsleaderboard.viewmodels.SubmissionActivityViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SubmissionActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySubmissionBinding
@@ -39,7 +43,27 @@ class SubmissionActivity : AppCompatActivity() {
         submissionActivityViewModel.networkErrorWhileSubmittingProject.observe(this,
             Observer {
                 it?.let {
+                    val submissionAlertDialog = AlertDialog.Builder(this).create()
                     //show project submission failed alert dialog to user
+                    val submissionFailedAlertDialogLayout = DataBindingUtil
+                        .inflate<SubmitProjectCustomAlertDialogLayoutBinding>(
+                            LayoutInflater.from(this),
+                            R.layout.submit_project_custom_alert_dialog_layout,
+                            null,
+                            false
+                        )
+                    submissionAlertDialog.setView(submissionFailedAlertDialogLayout.root)
+                    submissionAlertDialog.window!!.setBackgroundDrawable(resources.getDrawable(
+                        R.drawable.alert_dialog_window_background
+                    ))
+
+                    submissionAlertDialog.show()
+
+                    CoroutineScope(Dispatchers.Main).launch {
+                        delay(500)
+                        submissionAlertDialog.cancel()
+                    }
+
                 }
             })
 

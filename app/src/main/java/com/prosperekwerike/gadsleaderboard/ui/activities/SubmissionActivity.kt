@@ -19,7 +19,7 @@ class SubmissionActivity : AppCompatActivity() {
     private lateinit var projectGitHubLinkTextInputLayout: TextInputLayout
     private lateinit var submitButton: MaterialButton
 
-    val submissionActivityViewModel: SubmissionActivityViewModel by viewModels()
+   private val submissionActivityViewModel: SubmissionActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class SubmissionActivity : AppCompatActivity() {
         submissionActivityViewModel.networkErrorWhileSubmittingProject.observe(this,
             Observer {
                 it?.let {
-                   //show project submission failed alert dialog to user 
+                   //show project submission failed alert dialog to user
                 }
             })
     }

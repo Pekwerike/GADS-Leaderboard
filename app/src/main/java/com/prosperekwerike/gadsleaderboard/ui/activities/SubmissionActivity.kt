@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.google.android.material.button.MaterialButton
@@ -22,6 +23,7 @@ class SubmissionActivity : AppCompatActivity() {
     private lateinit var emailAddressTextInputLayout: TextInputLayout
     private lateinit var projectGitHubLinkTextInputLayout: TextInputLayout
     private lateinit var submitButton: MaterialButton
+    private lateinit var submitProjectCustomToolbar: Toolbar
 
     private val submissionActivityViewModel: SubmissionActivityViewModel by viewModels()
 
@@ -40,6 +42,13 @@ class SubmissionActivity : AppCompatActivity() {
                     //show project submission failed alert dialog to user
                 }
             })
+
+        submissionActivityViewModel.submissionSuccessfullySignal.observe(this,
+        Observer {
+            it?.let{
+                //show project submission was successful alert dialog to user
+            }
+        })
     }
 
     private fun setOnClickListenersOnViews() {
@@ -81,6 +90,11 @@ class SubmissionActivity : AppCompatActivity() {
                 .setBackgroundDrawable(resources.getDrawable(R.drawable.alert_dialog_window_background))
             alertDialog.show()
         }
+
+
+        submitProjectCustomToolbar.setNavigationOnClickListener {
+            supportFinishAfterTransition()
+        }
     }
 
     private fun initializeViews() {
@@ -89,5 +103,6 @@ class SubmissionActivity : AppCompatActivity() {
         emailAddressTextInputLayout = binding.emailAddressTextInputLayout
         projectGitHubLinkTextInputLayout = binding.projectGithubLinkTextInputLayout
         submitButton = binding.submitProjectButton
+        submitProjectCustomToolbar = binding.submitProjectActivityCustomToolbar as Toolbar
     }
 }

@@ -13,6 +13,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 import com.prosperekwerike.gadsleaderboard.R
 import com.prosperekwerike.gadsleaderboard.databinding.ActivitySubmissionBinding
+import com.prosperekwerike.gadsleaderboard.databinding.SubmissionNotSuccessfulCustomAlertDialogLayoutBinding
 import com.prosperekwerike.gadsleaderboard.databinding.SubmitProjectCustomAlertDialogLayoutBinding
 import com.prosperekwerike.gadsleaderboard.viewmodels.SubmissionActivityViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -46,9 +47,9 @@ class SubmissionActivity : AppCompatActivity() {
                     val submissionAlertDialog = AlertDialog.Builder(this).create()
                     //show project submission failed alert dialog to user
                     val submissionFailedAlertDialogLayout = DataBindingUtil
-                        .inflate<SubmitProjectCustomAlertDialogLayoutBinding>(
+                        .inflate<SubmissionNotSuccessfulCustomAlertDialogLayoutBinding>(
                             LayoutInflater.from(this),
-                            R.layout.submit_project_custom_alert_dialog_layout,
+                            R.layout.submission_not_successful_custom_alert_dialog_layout,
                             null,
                             false
                         )
@@ -60,7 +61,7 @@ class SubmissionActivity : AppCompatActivity() {
                     submissionAlertDialog.show()
 
                     CoroutineScope(Dispatchers.Main).launch {
-                        delay(500)
+                        delay(100)
                         submissionAlertDialog.cancel()
                     }
 
@@ -101,6 +102,7 @@ class SubmissionActivity : AppCompatActivity() {
                     projectGithubLink = projectGitHubLink
                 )
                 Toast.makeText(this, "Submitting project", Toast.LENGTH_SHORT).show()
+                alertDialog.cancel()
             }
 
             //attach a click listener to the close project submission button

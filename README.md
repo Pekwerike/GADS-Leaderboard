@@ -16,10 +16,12 @@ by using a post request to this <a href="https://docs.google.com/forms/d/e/1FAIp
 
 <h2 align="left">Screenshots</h2>
 <h4 align="center">
-<img src="https://user-images.githubusercontent.com/43956851/92653628-879f8600-f2e6-11ea-868e-32a0c475ee51.png" width="30%" vspace="10" hspace="10">
-<img src="https://user-images.githubusercontent.com/43956851/92653225-f29c8d00-f2e5-11ea-9c2b-196156213be9.png" width="30%" vspace="10" hspace="10">
-<img src="https://user-images.githubusercontent.com/43956851/92653638-8b330d00-f2e6-11ea-97c0-764d2d14290b.png" width="30%" vspace="10" hspace="10"><br>     
- 
+<img src="https://user-images.githubusercontent.com/43956851/92654676-15c83c00-f2e8-11ea-818c-04676d44967a.png" width="30%" vspace="10" hspace="10">
+<img src="https://user-images.githubusercontent.com/43956851/92654294-8f135f00-f2e7-11ea-92fa-2a8c5c9eb952.png" width="30%" vspace="10" hspace="10">
+<img src="https://user-images.githubusercontent.com/43956851/92654608-f9c49a80-f2e7-11ea-8f7f-60d2568147a2.png" width="30%" vspace="10" hspace="10">
+<img src="https://user-images.githubusercontent.com/43956851/92654884-6a6bb700-f2e8-11ea-9699-6412f5dfce94.png" width="30%" vspace="10" hspace="10">
+<img src="(https://user-images.githubusercontent.com/43956851/92654888-6b9ce400-f2e8-11ea-8e41-b329aaac777d.png" width="30%" vspace="10" hspace="10"><br>     
+
 
 ## How to install it 
 Clone the repositiory on your local machine, then open the folder with <a href="https://developer.android.com/studio" target="_blank">**Android Studio 4.0**</a> or higher.

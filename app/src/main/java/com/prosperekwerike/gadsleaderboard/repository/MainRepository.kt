@@ -12,10 +12,11 @@ import com.prosperekwerike.gadsleaderboard.mappers.convertToSkillsIQLeadersCusto
 import com.prosperekwerike.gadsleaderboard.mappers.convertToSkillsIQLeadersEntity
 import com.prosperekwerike.gadsleaderboard.network.NetworkApi
 import com.prosperekwerike.gadsleaderboard.network.NetworkPostApi
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainRepository(private val cacheDao: CacheDao) {
 
@@ -33,16 +34,16 @@ class MainRepository(private val cacheDao: CacheDao) {
         }
 
     private val _networkErrorFromLoading = MutableLiveData<Boolean>()
-    val networkErrorFromLoading : LiveData<Boolean>
-    get() = _networkErrorFromLoading
+    val networkErrorFromLoading: LiveData<Boolean>
+        get() = _networkErrorFromLoading
 
     private val _networkErrorWhileSubmittingProject = MutableLiveData<Boolean>()
-    val networkErrorWhileSubmittingProject : LiveData<Boolean>
-    get() = _networkErrorWhileSubmittingProject
+    val networkErrorWhileSubmittingProject: LiveData<Boolean>
+        get() = _networkErrorWhileSubmittingProject
 
     private val _projectSubmittedSuccessfullySignal = MutableLiveData<Boolean>()
-    val projectSubmittedSuccessfullySignal : LiveData<Boolean>
-    get() = _projectSubmittedSuccessfullySignal
+    val projectSubmittedSuccessfullySignal: LiveData<Boolean>
+        get() = _projectSubmittedSuccessfullySignal
 
     suspend fun refreshListOfLearningLeaders() {
         withContext(Dispatchers.IO) {
@@ -52,7 +53,7 @@ class MainRepository(private val cacheDao: CacheDao) {
                 cacheDao.refreshLearningLeaders(learningLeaders.convertToLearningLeadersEntity())
             } catch (exception: Exception) {
                 //no internet or network error
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     _networkErrorFromLoading.value = true
                 }
             }
@@ -66,7 +67,7 @@ class MainRepository(private val cacheDao: CacheDao) {
                     NetworkApi.retrofitApiService.getSkillsIQLeaders()
                 cacheDao.refreshSkillsIQLeaders(skillsIQLeaders.convertToSkillsIQLeadersEntity())
             } catch (exception: Exception) {
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     _networkErrorFromLoading.value = true
                 }
             }
@@ -74,30 +75,36 @@ class MainRepository(private val cacheDao: CacheDao) {
     }
 
     suspend fun submitProject(
-        firstName : String,
-        lastName : String,
-        emailAddress : String,
-        projectGitHubLink : String
-    ){
-        withContext(Dispatchers.IO){
+        firstName: String,
+        lastName: String,
+        emailAddress: String,
+        projectGitHubLink: String
+    ) {
+        withContext(Dispatchers.Main) {
             try {
-                NetworkPostApi.retrofitPostApiService.submitProject(
+            NetworkPostApi.retrofitPostApiService.submitProject(
                     firstName = firstName,
                     lastName = lastName,
                     emailAddress = emailAddress,
                     linkToProject = projectGitHubLink
-                )
+                ).enqueue(object : Callback<Void> {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        _networkErrorWhileSubmittingProject.value = true
 
-                withContext(Dispatchers.Main){
-                    //use live data to signify that the project was submitted successfully
-                    _projectSubmittedSuccessfullySignal.value = true
-                }
+                    }
 
-            }catch (exception: Exception){
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                        //use live data to signify that the project was submitted successfully
+                        _projectSubmittedSuccessfullySignal.value = true
+
+                    }
+
+                })
+
+            } catch (exception: Exception) {
                 //notify the user that the process to submit video failed
-                withContext(Dispatchers.Main){
                     _networkErrorWhileSubmittingProject.value = true
-                }
+
             }
         }
     }

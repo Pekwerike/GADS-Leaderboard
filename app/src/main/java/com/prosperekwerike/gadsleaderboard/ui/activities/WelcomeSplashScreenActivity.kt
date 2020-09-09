@@ -15,10 +15,10 @@ class WelcomeSplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_welcome_splash_screen)
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(1000)
+            delay(1200)
             Intent(this@WelcomeSplashScreenActivity, HomepageActivity::class.java).apply {
                 startActivity(this)
-            }   
+            }
             supportFinishAfterTransition()
         }
     }

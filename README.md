@@ -4,7 +4,7 @@
 
 ## How it works 
 The application makes a GET request to the <a href="https://gadsapi.herokuapp.com/api/hours" target="_blank">**Learning leaders API endpoint**</a>
-to fetch the learning leaders and another GET request to the <a href="https://gadsapi.herokuapp.com/api/skills" target="_blank">**Skills IQ leaders API endpoint**</a>
+to fetch the learning leaders and another GET request to the <a href="https://gadsapi.herokuapp.com/api/skilliq" target="_blank">**Skills IQ leaders API endpoint**</a>
 to fetch the skills IQ leaders. The data is fetched once and cached using an in-app database to support offline usage of the application. The practice project is submitted through the app 
 by making a POST request to this <a href="https://docs.google.com/forms/d/e/1FAIpQLSf9d1TcNU6zc6KR8bSEM41Z1g1zl35cwZr2xyjIhaMAz8WChQ/formResponse" target="_blank">**google form**</a>.
 

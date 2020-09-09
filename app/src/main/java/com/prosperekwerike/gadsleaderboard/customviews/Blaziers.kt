@@ -12,7 +12,7 @@ class Blaziers @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    val paint = Paint().apply {
+   private val paint = Paint().apply {
         isDither = true
         isAntiAlias = true
         color = resources.getColor(R.color.darken_ray)
@@ -40,8 +40,8 @@ class Blaziers @JvmOverloads constructor(
         val path = Path().apply {
             moveTo(0F, height.toFloat())
             lineTo(width.toFloat(), height.toFloat())
-            lineTo(width.toFloat(), height/1.6f)
-            quadTo(width/3f, height/1.4f, 0F, height.toFloat() * 0.94F)
+            lineTo(width.toFloat(), height/1.5f)
+            quadTo(width/3f, height/1.3f, 0F, height.toFloat() * 0.95F)
         }
 
         canvas!!.drawPath(path, paint)

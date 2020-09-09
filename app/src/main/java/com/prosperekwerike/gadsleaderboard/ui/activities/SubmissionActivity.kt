@@ -73,6 +73,7 @@ class SubmissionActivity : AppCompatActivity() {
         submissionActivityViewModel.submissionSuccessfullySignal.observe(this,
         Observer {
             it?.let{
+                hideFormViews()
                 //show project submission was successful alert dialog to user
                 val submissionSuccessfulAlertDialog = AlertDialog.Builder(this)
                     .create()
@@ -85,6 +86,13 @@ class SubmissionActivity : AppCompatActivity() {
                     )
 
                 submissionSuccessfulAlertDialog.setView(submissionSuccessfulLayout.root)
+                submissionSuccessfulAlertDialog.window.setBackgroundDrawable(
+                    resources.getDrawable(R.drawable.alert_dialog_window_background)
+                )
+
+                submissionSuccessfulAlertDialog.setOnCancelListener {
+                    showFormViews()
+                }
                 submissionSuccessfulAlertDialog.show()
             }
         })

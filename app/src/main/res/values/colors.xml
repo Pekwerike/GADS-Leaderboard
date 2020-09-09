@@ -5,6 +5,6 @@
     <color name="colorAccent">#000000</color>
     <color name="goldColor">#f4971e</color>
 
-    <color name="darken_ray">#040404</color>
+    <color name="darken_ray">#212121</color>
     <color name="backgroundColor">#000000</color>
 </resources>

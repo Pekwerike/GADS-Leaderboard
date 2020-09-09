@@ -91,7 +91,7 @@ class SubmissionActivity : AppCompatActivity() {
                 )
 
                 submissionSuccessfulAlertDialog.setOnCancelListener {
-                    showFormViews()
+                    supportFinishAfterTransition()
                 }
                 submissionSuccessfulAlertDialog.show()
             }

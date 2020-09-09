@@ -15,7 +15,7 @@ class WelcomeSplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_welcome_splash_screen)
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(1200)
+            delay(1500)
             Intent(this@WelcomeSplashScreenActivity, HomepageActivity::class.java).apply {
                 startActivity(this)
             }

@@ -14,5 +14,12 @@ by using a post request to this <a href="https://docs.google.com/forms/d/e/1FAIp
 - [Glide](https://bumptech.github.io/glide/) - Glide is a fast and efficient image loading library for Android focused on smooth scrolling. Glide offers an easy to use API, a performant and extensible resource decoding pipeline and automatic resource pooling.
 - [Android Jetpack](https://developer.android.com/jetpack) - Jetpack is a suite of libraries to help developers follow best practices, reduce boilerplate code, and write code that works consistently across Android versions and devices so that developers can focus on the code they care about.
 
-## How to use it 
+<h2 align="left">Screenshots</h2>
+<h4 align="center">
+<img src="https://user-images.githubusercontent.com/43956851/92653628-879f8600-f2e6-11ea-868e-32a0c475ee51.png" width="30%" vspace="10" hspace="10">
+<img src="https://user-images.githubusercontent.com/43956851/92653225-f29c8d00-f2e5-11ea-9c2b-196156213be9.png" width="30%" vspace="10" hspace="10">
+<img src="https://user-images.githubusercontent.com/43956851/92653638-8b330d00-f2e6-11ea-97c0-764d2d14290b.png" width="30%" vspace="10" hspace="10"><br>     
+ 
+
+## How to install it 
 Clone the repositiory on your local machine, then open the folder with <a href="https://developer.android.com/studio" target="_blank">**Android Studio 4.0**</a> or higher.

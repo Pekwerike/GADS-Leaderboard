@@ -20,7 +20,7 @@ by using a post request to this <a href="https://docs.google.com/forms/d/e/1FAIp
 <img src="https://user-images.githubusercontent.com/43956851/92654294-8f135f00-f2e7-11ea-92fa-2a8c5c9eb952.png" width="30%" vspace="10" hspace="10">
 <img src="https://user-images.githubusercontent.com/43956851/92654608-f9c49a80-f2e7-11ea-8f7f-60d2568147a2.png" width="30%" vspace="10" hspace="10">
 <img src="https://user-images.githubusercontent.com/43956851/92654884-6a6bb700-f2e8-11ea-9699-6412f5dfce94.png" width="30%" vspace="10" hspace="10">
-<img src="(https://user-images.githubusercontent.com/43956851/92654888-6b9ce400-f2e8-11ea-8e41-b329aaac777d.png" width="30%" vspace="10" hspace="10"><br>     
+<img src="https://user-images.githubusercontent.com/43956851/92654888-6b9ce400-f2e8-11ea-8e41-b329aaac777d.png" width="30%" vspace="10" hspace="10"><br>     
 
 
 ## How to install it 

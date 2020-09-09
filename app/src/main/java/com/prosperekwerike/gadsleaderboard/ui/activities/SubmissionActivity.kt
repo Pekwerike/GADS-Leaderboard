@@ -86,7 +86,7 @@ class SubmissionActivity : AppCompatActivity() {
                     )
 
                 submissionSuccessfulAlertDialog.setView(submissionSuccessfulLayout.root)
-                submissionSuccessfulAlertDialog.window.setBackgroundDrawable(
+                submissionSuccessfulAlertDialog.window!!.setBackgroundDrawable(
                     resources.getDrawable(R.drawable.alert_dialog_window_background)
                 )
 

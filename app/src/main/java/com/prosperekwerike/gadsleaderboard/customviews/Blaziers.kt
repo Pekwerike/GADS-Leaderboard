@@ -54,10 +54,11 @@ class Blaziers @JvmOverloads constructor(
         canvas!!.drawPath(bottomPath, paint)
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        mWidth = MeasureSpec.getSize(widthMeasureSpec)
-        mHeight = MeasureSpec.getSize(heightMeasureSpec)
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        mWidth = w
+        mHeight = h
 
         initializePaths()
     }

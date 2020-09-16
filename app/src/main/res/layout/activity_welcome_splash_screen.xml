@@ -7,7 +7,7 @@
     tools:context=".ui.activities.WelcomeSplashScreenActivity">
 
 
-    <com.prosperekwerike.gadsleaderboard.customviews.Blaziers
+    <com.prosperekwerike.gadsleaderboardren.customviews.Blaziers
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/backgroundColor" />

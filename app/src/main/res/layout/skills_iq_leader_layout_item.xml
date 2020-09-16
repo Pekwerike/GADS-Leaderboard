@@ -6,7 +6,7 @@
 
         <variable
             name="skillsIQLeaderCustomModel"
-            type="com.prosperekwerike.gadsleaderboard.domain.SkillsIQLeadersCustomModel" />
+            type="com.prosperekwerike.gadsleaderboardren.domain.SkillsIQLeadersCustomModel" />
     </data>
 
 

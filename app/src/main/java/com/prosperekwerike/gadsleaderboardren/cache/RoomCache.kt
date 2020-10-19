@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase
 @Database(
     entities = [LearningLeadersEntity::class, SkillsIQLeadersEntity::class],
     version = 1,
-    exportSchema = true
+    exportSchema = false
 )
 abstract class RoomCache : RoomDatabase() {
     abstract fun cacheDao() : CacheDao
